@@ -1,0 +1,16 @@
+ZeroNOneN
+q0,q1,q2,q3,q4
+0,1
+0,1,X,_
+q0
+q4
+qreject
+q0,0,q1,X,R
+q0,X,q0,X,R
+q0,_,q4,_,S
+q1,0,q1,0,R
+q1,X,q1,X,R
+q1,1,q2,X,L
+q2,X,q2,X,L
+q2,0,q2,0,L
+q2,_,q0,_,R
