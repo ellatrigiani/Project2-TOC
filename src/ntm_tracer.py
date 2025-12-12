@@ -10,11 +10,6 @@ DIR_S = "S"
 
 class NTM_Tracer(TuringMachineSimulator):
     def step(self, left, right, symbol_write, move_in):
-        """
-        Applying one transition to a single configuration.
-        left is the string to the left of the head
-        right is the symbol under the head and whatever is the remaining to the right
-        """
         #tail is everything to the right of the current head 
         if right:
             tail = right[1:] #meaning head is right[0] and tail is everything else 
@@ -48,7 +43,10 @@ class NTM_Tracer(TuringMachineSimulator):
         return left_update, right_update
 
     def run(self, input_string, max_depth):
-        """Breadth-first search of the NTM configuration tree."""
+         """
+        Performs a Breadth-First Search (BFS) trace of the NTM.
+        Ref: Section 4.1 "Trees as List of Lists" [cite: 146]
+        """
         print(f"Tracing NTM: {self.machine_name} on input '{input_string}'")
 
         #checking if input string is empty
@@ -131,7 +129,7 @@ class NTM_Tracer(TuringMachineSimulator):
             if accepted:
                 break
 
-            #global rejection when all branches stop/halt
+            #rejection when all branches stop/halt
             if not next_level and all_rejected:
                 print(f"String rejected in {depth} transitions.")
                 break
@@ -144,7 +142,10 @@ class NTM_Tracer(TuringMachineSimulator):
             print(f"Execution stopped after {max_depth} steps.")
 
     def print_trace_path(self, final_node):
-        """Backtrack and print the path from start to the accepting node."""
+        """
+        Backtrack and print the path from root to the accepting node.
+        Ref: Section 4.2 [cite: 165]
+        """
         #initializing path to reconstruct
         parents = self.parents
         curr = tuple(final_node)
